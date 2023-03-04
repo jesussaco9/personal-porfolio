@@ -2,30 +2,27 @@ import { Collapse, Flex, Stack, Text, useColorModeValue, useDisclosure } from "@
 import { NavItem } from "../../../../interfaces/NavIten";
 import { Link } from 'react-scroll';
 
-export const MobileNavItem = ({ label, href }: NavItem) => {
+export const MobileNavItem = ({ label, href, page }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
-
   return (
     <Stack spacing={4} onClick={onToggle}>
-      <Flex
-        to={label}
-        py={2}
-        as={Link}
-        href={href ?? '#'}
-        justify={'space-between'}
-        align={'center'}
-        _hover={{
-          textDecoration: 'none',
-        }}
-      >
-        <Text
+        <Link
+              to={page}
+              href={href ?? '#'}
+              activeClass='active'
+              spy={true}
+              smooth={true}
+              offset={-50}
+              duration={500}
+            >
+              <Text
           fontWeight={600}
           color={useColorModeValue('gray.600', 'gray.200')}
         >
           {label}
         </Text>
-      </Flex>
-
+            </Link>
+        
       <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
         <Stack
           mt={2}
