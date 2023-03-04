@@ -60,7 +60,7 @@ export default function Navbar() {
             pt={2}
           >
             <Button as="a" href="/" variant={"link"} fontSize={20}>
-              Jesus Sanchez Cordero
+            Jesús Sánchez Cordero
             </Button>
           </Text>
 
@@ -84,4 +84,3 @@ export default function Navbar() {
     </Box>
   )
 }
-
