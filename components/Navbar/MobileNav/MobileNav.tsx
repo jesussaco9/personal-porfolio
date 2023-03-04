@@ -1,5 +1,5 @@
 import { Stack, useColorModeValue } from "@chakra-ui/react";
-import { NAV_ITEMS } from "../../../global/NavSeed";
+import { NAV_ITEMS } from "../../../global/Seeds";
 import ToggleColorMode from "../../ToggleColorMode/ToggleColorMode";
 import { MobileNavItem } from "./MobileNavItem";
 
@@ -11,7 +11,7 @@ export const MobileNav = () => {
       display={{ md: 'none' }}
     >
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <MobileNavItem key={navItem.page} {...navItem} />
       ))}
       <ToggleColorMode />
     </Stack>
