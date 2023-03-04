@@ -16,7 +16,7 @@ const Home = () => {
             />
           </Stack>
           <Stack direction='column'>
-            <Text fontSize='4xl' w={250}>Jesús Sánchez</Text>
+            <Text fontSize='4xl' w={250} alignSelf='center'>Jesús Sánchez</Text>
             <Text textAlign='justify'>
               Mi nombre es Jesús Sánchez, un ingeniero de sistemas de Costa Rica. Me gustan los deportes, la música, la lectura y pasar tiempo con mi familia.
             </Text>
