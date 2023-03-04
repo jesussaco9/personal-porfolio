@@ -1,10 +1,12 @@
 'use client'
 
-import { Link } from "@chakra-ui/react"
-import Navbar from "../../components/Navbar/Navbar"
+import Home from "../../components/Sections/Home/Home"
+
 
 export default function Page() {
   return (
-    <Navbar/>
+    <>
+      <Home />
+    </>
   )
 }

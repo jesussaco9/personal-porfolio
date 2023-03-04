@@ -12,7 +12,7 @@ export const DesktopNav = () => {
           <Box key={navItem.label}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <Link
-                to={navItem.label}
+                to={navItem.page}
                 href={navItem.href ?? '#'}
                 color={linkColor}
               >
