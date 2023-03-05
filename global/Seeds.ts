@@ -12,6 +12,11 @@ const NAV_ITEMS: Array<NavItem> = [
     href: '#',
   },
   {
+    label: 'Contacto',
+    page: 'contact',
+    href: '#',
+  },
+  {
     label: 'Proyectos',
     page: 'projects',
     href: '#',
@@ -28,6 +33,7 @@ const skills = [
   { skill: "JavaScript" },
   { skill: "TypeScript" },
   { skill: "Java" },
+  { skill: "C#" },
   { skill: "Sass" },
   { skill: "Bootstrap" },
   { skill: "Semantic UI" },
@@ -50,9 +56,11 @@ const projects = [
     link: "https://pokemon-9hf1.vercel.app/",
   }
 ]
+const resume = '/Documents/CVJesusSanchezCorderoES.pdf'
 
 export {
   NAV_ITEMS,
   skills,
-  projects
+  projects,
+  resume
 }

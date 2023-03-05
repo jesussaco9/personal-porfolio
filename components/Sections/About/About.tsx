@@ -1,8 +1,6 @@
 import {
   Container,
-  Divider,
   IconButton,
-  Image,
   SimpleGrid,
   Stack,
   Tag,
@@ -10,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { HiArrowDown } from 'react-icons/hi';
-import { AiOutlineLine, AiOutlineMinus } from 'react-icons/ai';
+import { AiOutlineMinus } from 'react-icons/ai';
 import { Link } from 'react-scroll';
 import { skills } from '../../../global/Seeds';
 
@@ -74,7 +72,7 @@ const About = () => {
         <Stack alignItems='center'>
         <IconButton aria-label='Down to about'>
           <Link
-            to='projects'
+            to='contact'
             activeClass='active'
             spy={true}
             smooth={true}
