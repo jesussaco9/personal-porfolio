@@ -77,9 +77,9 @@ const MailModal = ({ isOpen, onClose }: Props) => {
     emailjs
       .send(
         'default_service',
-        decryptAES(process.env.NEXT_PUBLIC_TEMPLATE_ID || ''),
+        process.env.NEXT_PUBLIC_TEMPLATE_ID || '',
         { name: name.value, email: email.value, message: message.value },
-        decryptAES(process.env.NEXT_PUBLIC_USER_ID || '')
+        process.env.NEXT_PUBLIC_USER_ID || ''
       )
       .then(
         (response) => {
