@@ -20,6 +20,9 @@ import {
 
 import emailjs from 'emailjs-com';
 
+import { decryptAES, encryptAES } from '../../../../libs/encryptHelpers';
+import { validateMail } from '../../../../libs/utils';
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -42,15 +45,26 @@ const MailModal = ({ isOpen, onClose }: Props) => {
       setName({ ...name, error: name.value === '' ? true : false });
     }
     if (email.value === '') {
-      setEmail({ ...name, error: name.value === '' ? true : false });
+      setEmail({ ...email, error: name.value === '' ? true : false });
     }
     if (message.value === '') {
-      setMessage({ ...name, error: name.value === '' ? true : false });
+      setMessage({ ...message, error: name.value === '' ? true : false });
     }
-  };
+    
+  }
 
   const handleSend = () => {
     validations();
+    if(!validateMail(email.value) && email.value !== ''){
+      setEmail({ ...email, error: true });
+      toast({
+        title: 'Ingrese una dirección de correo electrónico válida.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
     if (name.value === '' || email.value === '' || message.value === '') {
       toast({
         title: '¡Por Favor! Complete todos los campos.',
@@ -63,20 +77,30 @@ const MailModal = ({ isOpen, onClose }: Props) => {
     emailjs
       .send(
         'default_service',
-        process.env.NEXT_PUBLIC_TEMPLATE_ID || '',
+        decryptAES(process.env.NEXT_PUBLIC_TEMPLATE_ID || ''),
         { name: name.value, email: email.value, message: message.value },
-        process.env.NEXT_PUBLIC_USER_ID || ''
+        decryptAES(process.env.NEXT_PUBLIC_USER_ID || '')
       )
       .then(
         (response) => {
-          toast({
-            title: 'Correo enviado con éxito.',
-            description: 'El correo fue enviado satisfactoriamente.',
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-          });
-          onClose();
+          if(response){
+            toast({
+              title: 'Correo enviado con éxito.',
+              description: 'El correo fue enviado satisfactoriamente.',
+              status: 'success',
+              duration: 5000,
+              isClosable: true,
+            });
+            onClose();
+          }
+          else{
+            toast({
+              title: 'No se pudo enviar el correo.',
+              status: 'error',
+              duration: 5000,
+              isClosable: true,
+            });
+          }
         },
         (err) => {
           toast({
@@ -156,10 +180,10 @@ const MailModal = ({ isOpen, onClose }: Props) => {
           </Stack>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme='blue' mr={3} onClick={onClose}>
+          <Button colorScheme='red' mr={3} onClick={onClose}>
             Cerrar
           </Button>
-          <Button onClick={() => handleSend()}>Enviar</Button>
+          <Button colorScheme='whatsapp' onClick={() => handleSend()}>Enviar</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
